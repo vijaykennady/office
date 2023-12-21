@@ -1,0 +1,108 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 ">
+            <form class="form bg-secondary p-3 fw-bolder border border-dark border-3"  [formGroup]="insertdata" (ngSubmit)="insert()">
+              <span style="color: rgb(166, 25, 25 );" *ngIf="insertdata.invalid && insertdata.touched && !insertdata.dirty">
+                * enter a required field in this form
+              </span> <br>
+    
+    <label for="name" class="form-label">{{'officename'|translate}}: </label>
+    <input type="text" class="form-control" formControlName="name">
+    <span style="color: rgb(166, 25, 25 );" *ngIf="name.invalid && name.dirty">
+      * name is required
+    </span> <br>
+    <label for="noOfEmployee" class="form-label mt-3">{{'noOfEmployee'|translate}}: </label>
+    <input type="text" class="form-control" formControlName="noOfEmployee">
+    <span style="color: rgb(166, 25, 25);" *ngIf="insertdata.controls.noOfEmployee.invalid && insertdata.controls.noOfEmployee.dirty ">
+     <span *ngIf="noOfEmployee.errors?.['required']">
+    *no of employees is must required
+     </span>
+     <span *ngIf="noOfEmployee.errors?.['pattern']">
+      *Characters are not allowed
+    </span>
+    </span> <br>
+    <label for="location" class="form-label mt-3">{{'Location'|translate}}: </label>
+    <input type="text" class="form-control" formControlName="location">
+    <span style="color: rgb(166, 25, 25 );" *ngIf="location.invalid && location.dirty">
+      * location is required
+    </span>
+    <br>
+        <label class="form-label" for="officeType">{{'OfficeType'|translate}}:</label> <br />
+        <input
+          class="form-check-input"
+          type="radio"
+          name="officeType"
+          value="It"
+          formControlName="officeType"
+       
+        />
+        {{'it'|translate}}
+        <input
+          type="radio"
+          name="officeType"
+          class="form-check-input"
+          value="Government"
+          formControlName="officeType"
+    
+        />
+        {{'govt'|translate}}
+        <input
+        type="radio"
+        name="officeType"
+        class="form-check-input"
+        value="Finance"
+        formControlName="officeType"
+    
+      />{{'finance'|translate}}
+      <input
+      type="radio"
+      name="officeType"
+      class="form-check-input"
+      value="Others"
+      formControlName="officeType"
+  
+    />
+      {{'others'|translate}} <br>
+      <span style="color: rgb(166, 25, 25 );" *ngIf="officeType.invalid && officeType.touched">
+        * select any one category
+      </span> <br>
+    <div class="text-center mt-3">
+     
+    <button class="btn btn-success p-2" [disabled]="insertdata.invalid" data-bs-toggle="modal" data-bs-target="#exampleModal">{{'submit'|translate}}</button>
+    <button class="btn btn-danger ms-5" routerLink="/list">{{'cancel'|translate}}</button>
+    </div>
+    
+            </form>
+        </div>
+    </div>
+    </div>
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content fw-bolder text-white border border-success border-3" style="background-color: green;">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{'sucessfullyinserted'|translate}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+        
+          <p>{{'officeid'|translate}} {{newOffice.id}}</p>
+            <p>{{'officename'|translate}} :{{newOffice.name}}</p>
+            <p>{{'Location'|translate}}:{{newOffice.location}}</p>
+            <p>{{'noOfEmployee'|translate}}: {{newOffice.noOfEmployee}}</p>
+            <p>{{'OfficeType'|translate}}: {{newOffice.officeType}}</p>
+            <!-- <span *ngIf="success">
+              <button routerLink="/list" class="btn btn-secondary">Ok</button>
+            </span> -->
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" routerLink="/list">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

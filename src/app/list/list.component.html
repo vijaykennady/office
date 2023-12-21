@@ -1,0 +1,57 @@
+
+<div class="text-center">
+<div class="container">
+    <table class="table text-white table-hover table-danger align-middle">
+        <thead class="bg-warning text-dark ">
+            <th>{{'s.no'|translate}}</th>
+            <th>{{'Name'|translate}}</th>
+            <th>{{'noOfEmployee'|translate}}</th>
+            <th>{{'Location'|translate}}</th>
+            <th>{{'OfficeType'|translate}}</th>
+            <th>{{'Options'|translate}}</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let o of offices let i=index">
+                <td>{{i+1}}</td>
+                <td>{{o.name}}</td>
+                <td>{{o.noOfEmployee}}</td>
+                <td>{{o.location}}</td>
+                <td>{{o.officeType}}</td>
+                <td> <button class="btn btn-primary me-2" (click)="toview(o.id)">
+                    {{'view'|translate}}
+                  </button>
+                  <button type="button" class="btn btn-danger me-2"  (click)="delete(o.id)"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    {{'delete'|translate}}
+                  </button>
+                  <button class="btn btn-success" (click)="toupdate(o.id)">{{'update'|translate}}</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<!-- delete modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content  text-white fw-bolder border  border-5" style="background-color: rgb(187, 37, 37);">
+        <div class="modal-header text-center">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel ">{{'sucessfullydeleted'|translate}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="m-5">
+  <p>Office Id: {{deloffice.id}}</p>
+  <p>Office Name: {{deloffice.name}}</p>
+  <p>No.Of.Employee: {{deloffice.noOfEmployee}}</p>
+  <p>Office Location: {{deloffice.location}}</p>
+  <p>Office Type: {{deloffice.officeType}}</p>    
+</div>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" routerLink="/list1">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p></p>
